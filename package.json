@@ -1,6 +1,7 @@
 {
 	"author": "Kulani Pavithri",
 	"name": "fcc-learn-npm-package-json",
+	"description": "A web app that teaches Node.js",
 	"dependencies": {
 		"express": "^4.14.0"
 	},
