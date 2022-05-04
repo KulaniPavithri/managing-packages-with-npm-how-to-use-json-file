@@ -68,13 +68,11 @@ app.use("/public", express.static(__dirname + "/public"));
 
 //Serve JSON on a Specific Route
 app.get("/json", (req, res) => {
+  var jsonResponse = {"message": "Hello json"};
   if (process.env.MESSAGE_STYLE==="uppercase"){
-    res.json({"message": "HELLO JSON"})
-  } else {
-    res.json(
-      {"message": "Hello Json"}
-    );
-  }
+    jsonResponse.message = jsonResponse.message.toUpperCase();
+  } 
+  res.json(jsonResponse);
 });
 //Listen on port set in environment variable or default to 3000
 var port = process.env.PORT || 3000;
