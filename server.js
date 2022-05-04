@@ -8,6 +8,7 @@
 var bGround = require('fcc-express-bground');
 var myApp = require('./myApp');
 //var fs = require('fs');
+var dotenv = require('dotenv').config();
 var express = require('express');
 var app = express();
 
@@ -67,7 +68,10 @@ app.use("/public", express.static(__dirname + "/public"));
 
 //Serve JSON on a Specific Route
 app.get("/json", (req, res) => {
-  res.json({"message": "Hello json"})
+  if (process.env.MESSAGE_STYLE===uppercase)
+    res.json({"message": "HELLO JSON"})
+  else 
+    res.json({"message": "Hello Json"})
 });
 //Listen on port set in environment variable or default to 3000
 var port = process.env.PORT || 3000;
