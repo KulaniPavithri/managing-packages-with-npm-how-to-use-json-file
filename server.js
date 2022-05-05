@@ -60,6 +60,15 @@ if (!process.env.DISABLE_XORIGIN) {
 //   res.send("Hello Express");
 // });
 
+//Create a middleware function to log a message for every http request
+const myLogger = (req, res, next) => {
+  let logMessage = `${req.method} ${req.path} - ${req.ip}`;
+  console.log(logMessage);
+  next();
+};
+
+app.use(myLogger);
+
 app.get("/", function(req, res){
   res.sendFile(__dirname + "/views/index.html");
 });
@@ -74,6 +83,8 @@ app.get("/json", (req, res) => {
   } 
   res.json(jsonResponse);
 });
+
+
 //Listen on port set in environment variable or default to 3000
 var port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, function(){
