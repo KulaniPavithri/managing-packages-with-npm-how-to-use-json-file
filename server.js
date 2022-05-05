@@ -60,14 +60,11 @@ if (!process.env.DISABLE_XORIGIN) {
 //   res.send("Hello Express");
 // });
 
-//Create a middleware function to log a message for every http request
-const myLogger = (req, res, next) => {
-  let logMessage = `${req.method} ${req.path} - ${req.ip}`;
-  console.log(logMessage);
+//(root level logger) Create a middleware function to log a message for every http request
+app.use((req, res, next) => {
+  console.log(req.method + " " + req.path + " - " + req.ip);
   next();
-};
-
-app.use(myLogger);
+});
 
 app.get("/", function(req, res){
   res.sendFile(__dirname + "/views/index.html");
