@@ -82,11 +82,14 @@ app.get("/json", (req, res) => {
 });
 
 //Chain a middleware inside a route definition
+const getCurrentTimeString = () => {
+  return new Date().toString();
+}
 app.get('/now', (req, res, next) => {
-  req.time = new Date().toString();
+  req.time = getCurrentTimeString();
   next();
 }, (req, res) => {
-  res.now({time: req.time});
+  res.json({time: req.time});
 });
 
 
