@@ -81,6 +81,13 @@ app.get("/json", (req, res) => {
   res.json(jsonResponse);
 });
 
+//Chain a middleware inside a route definition
+app.get('/now', (req, res, next) => {
+  req.time = new Date().toString();
+}, (req, res) => {
+  res.json({time: req.time});
+});
+
 
 //Listen on port set in environment variable or default to 3000
 var port = process.env.PORT || 3000;
