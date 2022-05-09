@@ -85,7 +85,7 @@ app.get("/json", (req, res) => {
 const getCurrentTimeString = () => {
   return new Date().toString();
 }
-app.get('/now', (req, res, next) => {
+app.get("/now", (req, res, next) => {
   req.time = getCurrentTimeString();
   next();
 }, (req, res) => {
